@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>易企|僵尸企业分类系统</title>
+
+        {% load static %}
+        <link href="{% static 'favicon.ico' %}" rel="icon">
+        
+        <!-- 新 Bootstrap 核心 CSS 文件 --> 
+        <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <!-- jQuery文件。务必在bootstrap.min.js 之前引入 --> 
+        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.js"></script> 
+        <!-- 最新的 Bootstrap 核心 JavaScript 文件 --> 
+        <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/carousel.css' %}">
+    </head>
+
+<!-- NAVBAR
+================================================== -->
+  <body>
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <nav class="navbar navbar-default navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button class="navbar-toggle collapsed" aria-expanded="false" aria-controls="navbar" type="button" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="{% url 'index' %}"><span class="glyphicon glyphicon-tag"></span>    易企|僵尸企业分类系统</a>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar">
+              <ul class="nav navbar-nav">
+                <li><a href="{% url 'index' %}">首页</a></li>
+                <li class="dropdown active">
+                    <a class="dropdown-toggle" role="button" aria-expanded="false" aria-haspopup="true" href="#" data-toggle="dropdown">单个企业分类 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="{% url 'single-input' %}"><span class="glyphicon glyphicon-pencil"></span>    手动输入</a></li>
+                      <li><a href="{% url 'single-upload' %}"><span class="glyphicon glyphicon-cloud-upload"></span>    csv文件上传</a></li>
+                    </ul>
+                </li>
+                <li><a href="{% url 'multiple-upload' %}">批量企业分类</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+      </div>
+    </div>
+
+    <div class="container" style="margin-top: 70px;">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="page-header text-center">
+            <h1>单个企业分类
+                <small>手动输入</small>
+            </h1>
+        </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4" >
+          <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">企业基本信息</h3>
+            </div>
+            <div class="panel-body">
+              <div class="form-group"><label for="id_company_id">企业ID:</label><input name="company_id" id="id_company_id" required="" type="number" style="width: 100%;"></div>
+              <div class="form-group"><label for="id_zhuce_time">注册时间:</label><input name="zhuce_time" id="id_zhuce_time" type="number" style="width: 100%;"></div>
+              <div class="form-group"><label for="id_zhuce_ziben">注册资本:</label><input name="zhuce_ziben" id="id_zhuce_ziben" type="number" step="any" style="width: 100%;"></div>
+              <div class="form-group"><label for="id_hangye">行业:</label><select name="hangye" id="id_hangye" style="width: 100%;">
+                <option value="UN">未知</option>
+              
+                <option value="JT">交通运输业</option>
+              
+                <option value="SY">商业服务业</option>
+              
+                <option value="GY">工业</option>
+              
+                <option value="FW">服务业</option>
+              
+                <option value="SQ">社区服务</option>
+              
+                <option value="LS">零售业</option>
+              
+              </select></div>
+              <div class="form-group"><label for="id_quyu">区域:</label><select name="quyu" id="id_quyu" style="width: 100%;">
+                <option value="UN">未知</option>
+              
+                <option value="SD">山东</option>
+              
+                <option value="GD">广东</option>
+              
+                <option value="GX">广西</option>
+              
+                <option value="JX">江西</option>
+              
+                <option value="HB">湖北</option>
+              
+                <option value="HN">湖南</option>
+              
+                <option value="FJ">福建</option>
+              
+              </select></div>
+              <div class="form-group"><label for="id_qiyeleixing">企业类型:</label><select name="qiyeleixing" id="id_qiyeleixing" style="width: 100%;">
+                <option value="UN">未知</option>
+              
+                <option value="NM">农民专业合作社</option>
+              
+                <option value="HH">合伙企业</option>
+              
+                <option value="YX">有限责任公司</option>
+              
+                <option value="GF">股份有限公司</option>
+              
+                <option value="JT">集体所有制企业</option>
+              
+              </select></div>
+              <div class="form-group"><label for="id_kongzhiren_leixing">控制人类型:</label><select name="kongzhiren_leixing" id="id_kongzhiren_leixing" style="width: 100%;">
+                <option value="UN">未知</option>
+              
+                <option value="QY">企业法人</option>
+              
+                <option value="ZR">自然人</option>
+              
+              </select></div>
+              <div class="form-group"><label for="id_kongzhiren_chigubili">控制人持股比例:</label><input name="kongzhiren_chigubili" id="id_kongzhiren_chigubili" type="number" step="any" style="width: 100%;"></div>
+            </div>
+        </div>
+        <div class="panel panel-success">
+          <div class="panel-heading">
+              <h3 class="panel-title">企业知识产权信息</h3>
+          </div>
+          <div class="panel-body">
+              <div class="form-group"><label for="id_zhuanli">专利:</label><select name="zhuanli" id="id_zhuanli" style="width: 100%;">
+                <option value="UN">未知</option>
+              
+                <option value="Y">有</option>
+              
+                <option value="N">无</option>
+              
+              </select></div>
+              <div class="form-group"><label for="id_shangbiao">商标:</label><select name="shangbiao" id="id_shangbiao" style="width: 100%;">
+                <option value="UN">未知</option>
+              
+                <option value="Y">有</option>
+              
+                <option value="N">无</option>
+              
+              </select></div>
+              <div class="form-group"><label for="id_zhuzuoquan">著作权:</label><select name="zhuzuoquan" id="id_zhuzuoquan" style="width: 100%;">
+                <option value="UN">未知</option>
+              
+                <option value="Y">有</option>
+              
+                <option value="N">无</option>
+              
+              </select></div>
+          </div>
+      </div>
+      <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">企业融资数据</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group"><label for="id_zhaiquan_chengben1">近三年债权融资成本:</label><br><input name="zhaiquan_chengben1" id="id_zhaiquan_chengben1" type="number" step="any" style="width: 32%;">  <input name="zhaiquan_chengben2" id="id_zhaiquan_chengben2" type="number" step="any" style="width: 32%;">  <input name="zhaiquan_chengben3" id="id_zhaiquan_chengben3" type="number" step="any"style="width: 32%;"></div>
+            <div class="form-group"><label for="id_zhaiquan_edu1">近三年债权融资额度:</label><br><input name="zhaiquan_edu1" id="id_zhaiquan_edu1" type="number" step="any" style="width: 32%;">  <input name="zhaiquan_edu2" id="id_zhaiquan_edu2" type="number" step="any" style="width: 32%;">  <input name="zhaiquan_edu3" id="id_zhaiquan_edu3" type="number" step="any" style="width: 32%;"></div>
+            <div class="form-group"><label for="id_guquan_chengben1">近三年股权融资成本:</label><br><input name="guquan_chengben1" id="id_guquan_chengben1" type="number" step="any" style="width: 32%;">  <input name="guquan_chengben2" id="id_guquan_chengben2" type="number" step="any" style="width: 32%;">  <input name="guquan_chengben3" id="id_guquan_chengben3" type="number" step="any" style="width: 32%;"></div>
+            <div class="form-group"><label for="id_guquan_edu1">近三年股权融资额度:</label><br><input name="guquan_edu1" id="id_guquan_edu1" type="number" step="any" style="width: 32%;">  <input name="guquan_edu2" id="id_guquan_edu2" type="number" step="any" style="width: 32%;">  <input name="guquan_edu1" id="id_guquan_edu1" type="number" step="any" style="width: 32%;"></div>
+            <div class="form-group"><label for="id_neibu_chengben1">近三年内部融资和贸易融资成本:</label><br><input name="neibu_chengben1" id="id_neibu_chengben1" type="number" step="any" style="width: 32%;">  <input name="neibu_chengben2" id="id_neibu_chengben2" type="number" step="any" style="width: 32%;">  <input name="neibu_chengben3" id="id_neibu_chengben3" type="number" step="any" style="width: 32%;"></div>
+            <div class="form-group"><label for="id_neibu_edu1">近三年内部融资和贸易融资额度:</label><br><input name="neibu_edu1" id="id_neibu_edu1" type="number" step="any" style="width: 32%;">  <input name="neibu_edu2" id="id_neibu_edu2" type="number" step="any" style="width: 32%;">  <input name="neibu_edu3" id="id_neibu_edu3" type="number" step="any" style="width: 32%;"></div>
+            <div class="form-group"><label for="id_xiangmu_chengben1">近三年项目融资和政策融资成本:</label><br><input name="xiangmu_chengben1" id="id_xiangmu_chengben1" type="number" step="any" style="width: 32%;">  <input name="xiangmu_chengben2" id="id_xiangmu_chengben2" type="number" step="any" style="width: 32%;">  <input name="xiangmu_chengben3" id="id_xiangmu_chengben3" type="number" step="any" style="width: 32%;"></div>
+            <div class="form-group"><label for="id_xiangmu_edu1">近三年项目融资和政策融资额度:</label><br><input name="xiangmu_edu1" id="id_xiangmu_edu1" type="number" step="any" style="width: 32%;">  <input name="xiangmu_edu2" id="id_xiangmu_edu2" type="number" step="any" style="width: 32%;">  <input name="xiangmu_edu3" id="id_xiangmu_edu3" type="number" step="any" style="width: 32%;"></div>
+        </div>
+      </div>
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+            <h3 class="panel-title">企业年报数据</h3>
+        </div>
+        <div class="panel-body">
+          <div class="form-group"><label for="id_congyerenshu1">近三年从业人数:</label><br><input name="congyerenshu1" id="id_congyerenshu1" type="number" style="width: 32%;">  <input name="congyerenshu2" id="id_congyerenshu2" type="number" style="width: 32%;">  <input name="congyerenshu3" id="id_congyerenshu3" type="number" style="width: 32%;"></div>
+          <div class="form-group"><label for="id_zichanzonge1">近三年资产总额:</label><br><input name="zichanzonge1" id="id_zichanzonge1" type="number" step="any" style="width: 32%;">  <input name="zichanzonge2" id="id_zichanzonge2" type="number" step="any" style="width: 32%;">  <input name="zichanzonge3" id="id_zichanzonge3" type="number" step="any" style="width: 32%;"></div>
+          <div class="form-group"><label for="id_fuzhaizonge1">近三年负债总额:</label><br><input name="fuzhaizonge1" id="id_fuzhaizonge1" type="number" step="any" style="width: 32%;">  <input name="fuzhaizonge2" id="id_fuzhaizonge2" type="number" step="any" style="width: 32%;">  <input name="fuzhaizonge3" id="id_fuzhaizonge3" type="number" step="any" style="width: 32%;"></div>
+          <div class="form-group"><label for="id_yingshou1">近三年营业总收入:</label><br><input name="yingshou1" id="id_yingshou1" type="number" step="any" style="width: 32%;">  <input name="yingshou2" id="id_yingshou2" type="number" step="any" style="width: 32%;">  <input name="yingshou3" id="id_yingshou3" type="number" step="any" style="width: 32%;"></div>
+          <div class="form-group"><label for="id_zhuyingshou1">近三年主营业务收入:</label><br><input name="zhuyingshou1" id="id_zhuyingshou1" type="number" step="any" style="width: 32%;">  <input name="zhuyingshou2" id="id_zhuyingshou2" type="number" step="any" style="width: 32%;">  <input name="zhuyingshou3" id="id_zhuyingshou3" type="number" step="any" style="width: 32%;"></div>
+          <div class="form-group"><label for="id_lirun1">近三年利润总额:</label><br><input name="lirun1" id="id_lirun1" type="number" step="any" style="width: 32%;">  <input name="lirun2" id="id_lirun2" type="number" step="any" style="width: 32%;">  <input name="lirun3" id="id_lirun3" type="number" step="any" style="width: 32%;"></div>
+          <div class="form-group"><label for="id_jinglirun1">近三年净利润:</label><br><input name="jinglirun1" id="id_jinglirun1" type="number" step="any" style="width: 32%;">  <input name="jinglirun2" id="id_jinglirun2" type="number" step="any" style="width: 32%;">  <input name="jinglirun3" id="id_jinglirun3" type="number" step="any" style="width: 32%;"></div>
+          <div class="form-group"><label for="id_nashui1">近三年纳税总额:</label><br><input name="nashui1" id="id_nashui1" type="number" step="any" style="width: 32%;">  <input name="nashui2" id="id_nashui2" type="number" step="any" style="width: 32%;">  <input name="nashui3" id="id_nashui3" type="number" step="any" style="width: 32%;"></div>
+          <div class="form-group"><label for="id_suoyouzhe1">近三年所有者权益合计:</label><br><input name="suoyouzhe1" id="id_suoyouzhe1" type="number" step="any" style="width: 32%;">  <input name="suoyouzhe2" id="id_suoyouzhe2" type="number" step="any" style="width: 32%;">  <input name="suoyouzhe3" id="id_suoyouzhe3" type="number" step="any" style="width: 32%;"></div>
+        </div>
+    </div>
+            <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-cloud-upload"></span>    提交</button>
+          </form>
+        </div>
+        <div class="col-lg-4"></div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <!-- /END THE FEATURETTES -->
+
+
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right"><a href="#">回到顶部</a></p>
+        <p>Copyright © 2020 Team Number: 1903635. All Rights Reserved.</p>
+
+    </footer></div><!-- /.container -->
+  
+
+    </body>
+</html>

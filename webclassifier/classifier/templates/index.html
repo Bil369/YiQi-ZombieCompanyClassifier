@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>易企|僵尸企业分类系统</title>
+
+        {% load static %}
+        <link href="{% static 'favicon.ico' %}" rel="icon">
+        
+        <!-- 新 Bootstrap 核心 CSS 文件 --> 
+        <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <!-- jQuery文件。务必在bootstrap.min.js 之前引入 --> 
+        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.js"></script> 
+        <!-- 最新的 Bootstrap 核心 JavaScript 文件 --> 
+        <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/carousel.css' %}">
+    </head>
+
+<!-- NAVBAR
+================================================== -->
+  <body>
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <nav class="navbar navbar-default navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button class="navbar-toggle collapsed" aria-expanded="false" aria-controls="navbar" type="button" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="{% url 'index' %}"><span class="glyphicon glyphicon-tag"></span>    易企|僵尸企业分类系统</a>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="{% url 'index' %}">首页</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" role="button" aria-expanded="false" aria-haspopup="true" href="#" data-toggle="dropdown">单个企业分类 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="{% url 'single-input' %}"><span class="glyphicon glyphicon-pencil"></span>    手动输入</a></li>
+                      <li><a href="{% url 'single-upload' %}"><span class="glyphicon glyphicon-cloud-upload"></span>    csv文件上传</a></li>
+                    </ul>
+                </li>
+                <li><a href="{% url 'multiple-upload' %}">批量企业分类</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+      </div>
+    </div>
+
+
+    <!-- Carousel
+    ================================================== -->
+    <div class="carousel slide" id="myCarousel" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0"></li>
+        <li class="active" data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="item">
+          {% load static %}
+          <img class="first-slide img-responsive" alt="First slide" src="{% static 'slide1.jpg' %}">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>单个企业分类</h1>
+              <p><small>Single Company Classification</small></p>
+              <p>通过手动输入或csv文件上传单个企业信息，我们将给出企业是否可能为僵尸企业的结果，并给出可视化分析报告。</p>
+              <p><a class="btn btn-lg btn-primary" role="button" href="{% url 'single-input' %}"><span class="glyphicon glyphicon-pencil"></span>    手动输入</a>    <a class="btn btn-lg btn-primary" role="button" href="{% url 'single-upload' %}"><span class="glyphicon glyphicon-cloud-upload"></span>    上传文件</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item active">
+          {% load static %}
+          <img class="second-slide img-responsive" alt="Second slide" src="{% static 'slide2.jpg' %}">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>僵尸企业分类系统</h1>
+              <p><small>Zombie Company Classification System</small></p>
+              <p>僵尸企业分类系统依据企业相关数据，利用机器学习算法，判定企业是否可能为僵尸企业，并给出可视化分析报告。</p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          {% load static %}
+          <img class="third-slide img-responsive" alt="Third slide" src="{% static 'slide3.jpg' %}">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>批量企业分类</h1>
+              <p><small>Multiple Company Classification</small></p>
+              <p>通过csv文件批量上传企业信息，我们将生成相应的csv文件，其中包含每个企业的ID以及是否可能为僵尸企业的结果。</p>
+              <p><a class="btn btn-lg btn-primary" role="button" href="{% url 'multiple-upload' %}"><span class="glyphicon glyphicon-cloud-upload"></span>    上传文件</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" role="button" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" role="button" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div><!-- /.carousel -->
+
+
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+
+      <!-- Three columns of text below the carousel -->
+      <div class="row">
+        <div class="col-lg-6">
+          {% load static %}
+          <img width="140" height="140" class="img-rounded center-block img-responsive" alt="单个企业分类" src="{% static 'single.png' %}">
+          <h2 class="text-center">单个企业分类</h2>
+          <p>通过手动输入或csv文件上传单个企业信息，我们将给出企业是否可能为僵尸企业的结果，并给出可视化分析报告。</p>
+          <p class="text-center"><a class="btn btn-default" role="button" href="{% url 'single-input' %}"><span class="glyphicon glyphicon-pencil"></span>    手动输入</a>    <a class="btn btn-default" role="button" href="{% url 'single-upload' %}"><span class="glyphicon glyphicon-cloud-upload"></span>    上传文件</a></p>
+        </div>
+        <div class="col-lg-6">
+          <img width="140" height="140" class="img-rounded center-block img-responsive" alt="Generic placeholder image" src="{% static 'multiple.png' %}">
+          <h2 class="text-center">批量企业分类</h2>
+          <p>通过csv文件批量上传企业信息，我们将生成相应的csv文件，其中包含每个企业的ID以及是否可能为僵尸企业的结果。</p>
+          <p class="text-center"><a class="btn btn-default" role="button" href="{% url 'multiple-upload' %}"><span class="glyphicon glyphicon-cloud-upload"></span>    上传文件</a></p>
+        </div>
+      </div><!-- /.row -->
+
+      <hr class="featurette-divider">
+
+      <!-- /END THE FEATURETTES -->
+
+
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right"><a href="#">回到顶部</a></p>
+        <p>Copyright © 2020 Team Number: 1903635. All Rights Reserved.</p>
+
+    </footer></div><!-- /.container -->
+  
+
+    </body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>易企|僵尸企业分类系统</title>
+
+        {% load static %}
+        <link href="{% static 'favicon.ico' %}" rel="icon">
+        
+        <!-- 新 Bootstrap 核心 CSS 文件 --> 
+        <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <!-- jQuery文件。务必在bootstrap.min.js 之前引入 --> 
+        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.js"></script> 
+        <!-- 最新的 Bootstrap 核心 JavaScript 文件 --> 
+        <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/carousel.css' %}">
+    </head>
+
+<!-- NAVBAR
+================================================== -->
+  <body>
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <nav class="navbar navbar-default navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button class="navbar-toggle collapsed" aria-expanded="false" aria-controls="navbar" type="button" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="{% url 'index' %}"><span class="glyphicon glyphicon-tag"></span>    易企|僵尸企业分类系统</a>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar">
+              <ul class="nav navbar-nav">
+                <li><a href="{% url 'index' %}">首页</a></li>
+                <li class="dropdown active">
+                    <a class="dropdown-toggle" role="button" aria-expanded="false" aria-haspopup="true" href="#" data-toggle="dropdown">单个企业分类 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="{% url 'single-input' %}"><span class="glyphicon glyphicon-pencil"></span>    手动输入</a></li>
+                      <li><a href="{% url 'single-upload' %}"><span class="glyphicon glyphicon-cloud-upload"></span>    csv文件上传</a></li>
+                    </ul>
+                </li>
+                <li><a href="{% url 'multiple-upload' %}">批量企业分类</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+      </div>
+    </div>
+
+    <div class="container" style="margin-top: 70px;">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="page-header text-center">
+            <h1>单个企业分类
+                <small>csv文件上传</small>
+            </h1>
+        </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4 well well-lg" >
+          <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="id_base_test_sum">企业基本信息：</label>
+              <input name="base_test_sum" id="id_base_test_sum" required="" type="file" style="width: 100%;">
+            </div>
+            <div class="form-group">
+              <label for="id_knowledge_test_sum">知识产权数据：</label>
+              <input name="knowledge_test_sum" id="id_knowledge_test_sum" required="" type="file" style="width: 100%;">
+            </div>
+            <div class="form-group">
+              <label for="id_money_report_test_sum">融资数据：</label>
+              <input name="money_report_test_sum" id="id_money_report_test_sum" required="" type="file" style="width: 100%;">
+            </div>
+            <div class="form-group">
+              <label for="id_year_report_test_sum">年报数据：</label>
+              <input name="year_report_test_sum" id="id_year_report_test_sum" required="" type="file" style="width: 100%;">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-cloud-upload"></span>    上传文件</button>
+          </form>
+        </div>
+        <div class="col-lg-4"></div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <!-- /END THE FEATURETTES -->
+
+
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right"><a href="#">回到顶部</a></p>
+        <p>Copyright © 2020 Team Number: 1903635. All Rights Reserved.</p>
+
+    </footer></div><!-- /.container -->
+  
+
+    </body>
+</html>

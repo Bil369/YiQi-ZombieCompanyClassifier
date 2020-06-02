@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>易企|僵尸企业分类系统</title>
+
+        {% load static %}
+        <link href="{% static 'favicon.ico' %}" rel="icon">
+        
+        <!-- 新 Bootstrap 核心 CSS 文件 --> 
+        <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <!-- jQuery文件。务必在bootstrap.min.js 之前引入 --> 
+        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.js"></script> 
+        <!-- 最新的 Bootstrap 核心 JavaScript 文件 --> 
+        <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/carousel.css' %}">
+    </head>
+
+<!-- NAVBAR
+================================================== -->
+  <body>
+    <div class="navbar-wrapper">
+      <div class="container">
+
+        <nav class="navbar navbar-default navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button class="navbar-toggle collapsed" aria-expanded="false" aria-controls="navbar" type="button" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="{% url 'index' %}"><span class="glyphicon glyphicon-tag"></span>    易企|僵尸企业分类系统</a>
+            </div>
+            <div class="navbar-collapse collapse" id="navbar">
+              <ul class="nav navbar-nav">
+                <li><a href="{% url 'index' %}">首页</a></li>
+                <li class="dropdown active">
+                    <a class="dropdown-toggle" role="button" aria-expanded="false" aria-haspopup="true" href="#" data-toggle="dropdown">单个企业分类 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="{% url 'single-input' %}"><span class="glyphicon glyphicon-pencil"></span>    手动输入</a></li>
+                      <li><a href="{% url 'single-upload' %}"><span class="glyphicon glyphicon-cloud-upload"></span>    csv文件上传</a></li>
+                    </ul>
+                </li>
+                <li><a href="{% url 'multiple-upload' %}">批量企业分类</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+      </div>
+    </div>
+
+    <div class="container" style="margin-top: 70px;">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="page-header text-center">
+            <h1>可视化分析
+                <small>企业基本信息</small>
+            </h1>
+        </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2 sidebar">
+          <ul class="nav nav-pills nav-stacked">
+            <li class="active"><a href="{% url 'single-result-visualize-base' %}">企业基本信息</a></li>
+            <li><a href="{% url 'single-result-visualize-money' %}">企业融资数据</a></li>
+            <li><a href="{% url 'single-result-visualize-year' %}">企业年报数据</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-10 main">
+          <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">基本信息概览</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <h4><img src="{% static 'ID.png' %}">  企业ID：{{ company_id }}</h4>
+                    <h4><img src="{% static 'tag.png' %}">  分类结果：{% if pred %}<span class="label label-danger">僵尸企业</span>{% else %}<span class="label label-info">非僵尸企业</span>{% endif %}</h4>
+                    <h4><img src="{% static 'shijian.png' %}">  注册时间：{{ zhuce_time }}</h4>
+                    <h4><img src="{% static 'leixing.png' %}">  企业类型：{{ qiyeleixing }}</h4>
+                    <h4><img src="{% static 'leixingbili.png' %}">  控制人持股比例：{{ c_kongzhiren | safe }}</h4>
+                  </div>
+                  <div class="col-lg-6">
+                    <h4><img src="{% static 'qian.png' %}">  注册资本：{{ zhuce_ziben }}</h4>
+                    <h4><img src="{% static 'suozaixingye.png' %}">  行业：{{ hangye }}</h4>
+                    <h4><img src="{% static 'quyu.png' %}">  区域：{{ quyu }}</h4>
+                    <h4><img src="{% static 'type.png' %}">  控制人类型：{{ kongzhiren_leixing }}</h4>
+                    <h4><img src="{% static 'system-statu.png' %}">  企业经营状况：{{ r_jingying | safe }}</h4>
+                  </div>
+                </div>
+
+            </div>
+          </div>
+          <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">知识产权信息</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <h4><img src="{% static 'zhuanli.png' %}">  专利：{% if zhuanli == 1 %}<span class="label label-info">有</span>{% elif zhuanli == 0 %}<span class="label label-danger">无</span>{% else %}<span class="label label-warning">未知</span>{% endif %}</h4>
+                  </div>
+                  <div class="col-lg-4">
+                    <h4><img src="{% static 'shangbiao.png' %}">  商标：{% if shangbiao == 1 %}<span class="label label-info">有</span>{% elif shangbiao == 0 %}<span class="label label-danger">无</span>{% else %}<span class="label label-warning">未知</span>{% endif %}</h4>
+                  </div>
+                  <div class="col-lg-4">
+                    <h4><img src="{% static 'zhuzuoquan.png' %}">  著作权：{% if zhuzuoquan == 1 %}<span class="label label-info">有</span>{% elif zhuzuoquan == 0 %}<span class="label label-danger">无</span>{% else %}<span class="label label-warning">未知</span>{% endif %}</h4>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="featurette-divider">
+
+      <!-- /END THE FEATURETTES -->
+
+
+      <!-- FOOTER -->
+      <footer>
+        <p class="pull-right"><a href="#">回到顶部</a></p>
+        <p>Copyright © 2020 Team Number: 1903635. All Rights Reserved.</p>
+
+    </footer></div><!-- /.container -->
+  
+
+    </body>
+</html>
